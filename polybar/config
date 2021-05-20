@@ -1,0 +1,144 @@
+;executable note:
+;%{A<button>:<command>:}text to make clickable%{A}
+include-file = $HOME/.config/polybar/modules.ini
+include-file = $HOME/.config/polybar/fonts.ini
+
+[colors]
+background = #060813
+foreground = #E9E9E9
+alert = #711a26
+xwindow-fg = #CCC
+xwindow-prefix-fg = #C852B7
+bspwm-occupied-fg = #82DCC0
+bspwm-focused-fg = #97325e
+bspwm-focused-bg = #d3b57b
+bluetooth-fg = #62D8EC
+date-fg = #d3b57b
+volume-bar-fg = #d3b57b
+volume-indicator-fg = #C852B7
+volume-muted-fg = #FFA0AB
+battery-full-prefix-fg = #d3b57b
+battery-charging-prefix-fg = #3DE1CC
+ram-prefix-fg = #4039ac
+cpu-prefix-fg = #4039ac
+wifi-prefix-fg = #d3b57b
+
+[fonts]
+font0 = Agave:style=Regular:pixelsize=12;2
+font1 = Font Awesome 5 Brands Regular:style=Regular:pixelsize=12;2
+font2 = Agave:style=Regular:pixelsize=12;2
+font3 = Font Awesome 5 Free:pixelsize=12;2
+font4 = Font Awesome 5 Free Solid:pixelsize=12;2
+font5 = Font Awesome 5 Brands:pixelsize=12;2
+
+[vars]
+bar-radius = 8
+bar-height = 3.2%
+bar-left-width = 25%
+bar-mid-width = 23%
+bar-right-width = 26%
+bar-y = 9
+bar-left-x = 9
+bar-mid-x = 750
+bar-right-x = 1411
+
+
+
+;---------------------------------------
+;		Global - MAIN BARS          
+;---------------------------------------
+
+;[constants/main]
+;    include-file = $HOME/.config/polybar/fonts.ini
+;    override-redirect = true
+;    height = 45
+;    offset-y = 20
+;    radius = 23
+;    fixed-center = true
+
+;---------------------------------------
+;		Global - BACKGROUND BARS          
+;---------------------------------------
+
+;[constants/background]
+;    include-file = $HOME/.config/polybar/fonts.ini
+;    override-redirect = true
+;    height = 60
+;    offset-y = 12.5
+;    radius = 28 
+;    fixed-center = true
+
+
+
+
+
+[bar/leftbar]
+;inherit = constants/main
+modules-left = xwindow
+width = ${vars.bar-left-width}
+height = ${vars.bar-height}
+radius = ${vars.bar-radius}
+padding-left = 2
+module-margin-left = 1
+module-margin-right = 1
+; tray-position are app icons
+tray-position = none
+offset-y = ${vars.bar-y}
+offset-x = ${vars.bar-left-x}
+;wm-restack = bspwm
+background = ${colors.background}
+foreground = ${colors.foreground}
+font-0 = ${fonts.font0}
+font-1 = ${fonts.font1}
+font-2 = ${fonts.font2}
+font-3 = ${fonts.font3}
+font-4 = ${fonts.font4}
+
+[bar/midbar]
+;inherit = constants/main
+modules-center = dwm
+;modules-center = workspaces
+width = ${vars.bar-mid-width}
+height = ${vars.bar-height}
+radius = ${vars.bar-radius}
+offset-y = ${vars.bar-y}
+offset-x = ${vars.bar-mid-x}
+module-margin-left = 1
+module-margin-right = 1
+background = ${colors.background}
+foreground = ${colors.foreground}
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+font-0 = ${fonts.font0}
+font-1 = ${fonts.font1}
+font-2 = ${fonts.font2}
+font-3 = ${fonts.font3}
+font-4 = ${fonts.font4}
+
+[bar/rightbar]
+;inherit = constants/background
+modules-center = memory pulseaudio wlan eth battery date
+radius = ${vars.bar-radius}
+width = ${vars.bar-right-width}
+height = ${vars.bar-height}
+offset-y = ${vars.bar-y}
+offset-x = ${vars.bar-right-x}
+background = ${colors.background}
+foreground = ${colors.foreground}
+; cursor shape when hovering and scrolling over bar icons
+cursor-click = pointer
+eursor-scroll = ns-resize
+module-margin-left = 1
+module-margin-right = 1
+font-0 = ${fonts.font0}
+font-1 = ${fonts.font1}
+font-2 = ${fonts.font2}
+font-3 = ${fonts.font3}
+font-4 = ${fonts.font4}
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 4
+margin-bottom = 4
